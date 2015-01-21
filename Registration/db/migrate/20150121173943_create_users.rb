@@ -1,8 +1,9 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.string :username
-      t.string :password
+      # how to validate maxlength and uniqueness of username?
+      t.string :username, :limit => (50)
+      t.string :password,  :limit => (255)
       t.timestamps null: false
     end
   end
