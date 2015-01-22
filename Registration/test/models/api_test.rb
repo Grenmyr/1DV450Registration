@@ -5,14 +5,25 @@ class ApiTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-
-
   test 'should save with user_id' do
-    api2 = Api.new
-    api2.user_id = 5
+    user = User.new
+
+    api = Api.new
+    api.user = user
 
 
     # kollar att det verkligen är true (assert)
-    assert api2.save
+    assert api.save
+  end
+
+  test 'should save with api' do
+    user = User.new
+    user.username = 'Testuser'
+    user.password = '123456'
+    api = Api.new
+    user.api = api
+
+
+    assert user.save, 'd'
   end
 end
