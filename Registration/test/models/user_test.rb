@@ -5,6 +5,20 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
 
+begin
+  test 'should dasdasdas' do
+    user = User.new
+    user.username = 'Testuser'
+    user.password = '123456'
+
+    # kollar att det verkligen är true (assert)
+    assert_equal('Testuser is called 123456',user.info,'dom är samma')
+  end
+end
+
+  #write test to make sure api destroy if user gone
+
+
   test 'should save with username' do
     user = User.new
     user.username = 'Testuser'
