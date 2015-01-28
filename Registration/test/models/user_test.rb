@@ -5,16 +5,17 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-begin
-  test 'should dasdasdas' do
-    user = User.new
-    user.username = 'Testuser'
-    user.password = '123456'
+  begin
+    test 'should dasdasdas' do
+      user = User.new
+      user.username = 'Testuser'
+      user.password = '123456'
+      user.email = '1@me.com'
 
-    # kollar att det verkligen är true (assert)
-    assert_equal('Testuser is called 123456',user.info,'dom är samma')
+      # kollar att det verkligen är true (assert)
+      assert_equal('Testuser is called 123456',user.info,'dom är samma')
+    end
   end
-end
 
   #write test to make sure api destroy if user gone
 
@@ -23,6 +24,8 @@ end
     user = User.new
     user.username = 'Testuser'
     user.password = '123456'
+    user.email = '1@me.com'
+
 
     # kollar att det verkligen är true (assert)
     assert user.save
@@ -41,6 +44,7 @@ end
     user = User.new
     user.username = 'bosse'
     user.password = '123456'
+    user.email = '1@me.com'
 
 
     # kollar att det verkligen är false (assert_not)
@@ -51,7 +55,7 @@ end
     user = User.new
     user.username = 'bosseharförlångtusernameochkanejsparasidatabas'
     user.password = '123456'
-
+    user.email = '1@me.com'
 
     # kollar att det verkligen är false (assert_not)
     assert_not user.save
@@ -61,6 +65,7 @@ end
     user = User.new
     user.username = 'bosse1'
     user.password = '123456'
+    user.email = '1@me.com'
 
 
     # kollar att det verkligen är false (assert_not)
@@ -73,12 +78,23 @@ end
     user = User.new
     user.username = 'bosse1'
     user.password = '12345'
+    user.email = '1@me.com'
 
 
     # kollar att det verkligen är false (assert_not)
     assert_not user.save
   end
 
+  #tests for email attribute
+  test 'should not save user with to short email' do
+    user = User.new
+    user.username = 'bosse1'
+    user.password = '123456'
+    user.email = '1@m'
 
+
+    # kollar att det verkligen är false (assert_not)
+    assert_not user.save
+  end
 
 end
