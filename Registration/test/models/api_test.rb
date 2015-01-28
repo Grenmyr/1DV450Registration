@@ -20,6 +20,7 @@ class ApiTest < ActiveSupport::TestCase
     user = User.new
     user.username = 'Testuser'
     user.password = '123456'
+    user.email = 'testemail@dsa.com'
     api = Api.new
     user.api = api
 

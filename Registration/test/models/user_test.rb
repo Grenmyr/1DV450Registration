@@ -92,6 +92,15 @@ class UserTest < ActiveSupport::TestCase
     user.password = '123456'
     user.email = '1@m'
 
+    # kollar att det verkligen är false (assert_not)
+    assert_not user.save
+  end
+
+  test 'should not save user with corrupt email' do
+    user = User.new
+    user.username = 'bosse1'
+    user.password = '123456'
+    user.email = '1@dsadasdsam'
 
     # kollar att det verkligen är false (assert_not)
     assert_not user.save
