@@ -20,14 +20,13 @@ ActiveRecord::Schema.define(version: 20150121173958) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "apis", ["user_id"], name: "index_apis_on_user_id"
-
   create_table "users", force: :cascade do |t|
-    t.string   "username",   limit: 30
-    t.string   "password",   limit: 255
-    t.string   "email",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "username"
+    t.string   "password"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
