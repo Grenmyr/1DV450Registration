@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  #kolla först om användare e inloggad  genom before_action
   def show
     @user = User.find(params[:id])
     #debugger
