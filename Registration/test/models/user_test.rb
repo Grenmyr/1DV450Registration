@@ -42,7 +42,7 @@ class UserTest < ActiveSupport::TestCase
   # tests for usename attribute
   test 'should not save user with to short username' do
     user = User.new
-    user.username = 'bosse'
+    user.username = 'bo'
     user.password = '123456'
     user.email = '1@me.com'
 

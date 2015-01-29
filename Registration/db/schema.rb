@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20150121173958) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "apis", ["user_id"], name: "index_apis_on_user_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password"
