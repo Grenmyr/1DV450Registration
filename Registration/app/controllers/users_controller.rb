@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   #kolla först om användare e inloggad  genom before_action
-  #before_action :logged_in?
   before_action :validate_login
 
   def show
