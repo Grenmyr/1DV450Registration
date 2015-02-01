@@ -1,2 +1,20 @@
-<%= @user.username %>, <%= @user.email %>
+<% provide(:title, 'Din Api sida') %>
 <%= gravatar_for @user %>
+<h4>Användarinformation för <%= @user.username %></h4>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <ul>
+      <li>
+        <h4> <%= 'Användarnamn: ' + @user.username %></h4>
+      </li>
+      <li>
+        <h4><%= 'Epost: ' + @user.email %></h4>
+      </li>
+      <li>
+        <h4><%= 'Din personliga Api nyckel: ' +  @user.api.key %></h4>
+        <h4>Ta bort </h4>
+      </li>
+    </ul>
+  </div>
+</div>
