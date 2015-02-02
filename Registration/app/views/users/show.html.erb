@@ -1,19 +1,23 @@
 <% provide(:title, 'Din Api sida') %>
 <%= gravatar_for @user %>
-<h4>Användarinformation för <%= @user.username %></h4>
+<h2>Information for <%= @user.username %></h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <ul>
       <li>
-        <h4> <%= 'Användarnamn: ' + @user.username %></h4>
+        <h4> <%= 'Username: ' + @user.username %></h4>
       </li>
       <li>
-        <h4><%= 'Epost: ' + @user.email %></h4>
+        <h4><%= 'Email: ' + @user.email %></h4>
       </li>
       <li>
-        <h4><%= 'Din personliga Api nyckel: ' +  @user.api.key %></h4>
-        <h4>Ta bort </h4>
+        <% if @user.api.key.nil? %>
+            <%=  link_to "Create key!", edit_user_api_path(@user, @user.api) , class: "btn btn-lg btn-primary" %>
+        <% else %>
+          <h4>  <%=   'Your Api key: ' +  @user.api.key %> </h4>
+            <%=  link_to "Delete key!", edit_user_api_path(@user, @user.api) , class: "btn btn-lg btn-primary" %>
+        <% end %>
       </li>
     </ul>
   </div>

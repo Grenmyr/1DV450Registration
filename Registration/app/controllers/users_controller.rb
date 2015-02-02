@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :validate_login, only: [:show]
-  before_action :correct_user,   only: [:show]
+  before_action :correct_user,   only: [:show,:edit,:update]
   before_action :admin_user,     only: [:destroy,:index]
 
 
@@ -12,9 +12,18 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-
   def edit
     @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
 
 
