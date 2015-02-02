@@ -25,13 +25,22 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+=begin
+  api = Api.create(key: "testkeydnsalkdnjasdsHJDJSJD13215&")
 
+  api.user = user
+
+  api.save
+=end
 
   def create
     @user = User.new(user_params)
     api = Api.new( key: ('a'..'z').to_a.shuffle[0,16].join)
     @user.api = api
+    #@user.api = api
     if @user.save
+      api.user = @user
+      api.save
       session[:user_id] = @user.id
       flash[:success] = "Welcome #{@user.username}!"
       redirect_to @user

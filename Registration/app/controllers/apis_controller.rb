@@ -1,21 +1,21 @@
 class ApisController < ApplicationController
-  before_action :validate_login, only: [:edit]
   def edit
-    @user = User.find(params[:id])
-    @api = Api.find(@user)
+    @user = User.find(current_user.id)
 
-    if @api.key.nil?
-      @api.key =  ('a'..'z').to_a.shuffle[0,16].join
-      if@api.save
-        redirect_to user_path
-        flash[:success] = 'New api key' +@api.key + ' was created'
+    #@api = Api.find(@user.id)
+
+    if @user.api.key.nil?
+      @user.api.key =  ('a'..'z').to_a.shuffle[0,16].join
+      if@user.api.save
+        redirect_to @user
+        flash[:success] = 'New api key' +@user.api.key + ' was created'
       else
         render @user
         flash.now[:danger] = 'Api key could not be saved'
       end
     else
-      @api.key = nil
-      @api.save
+      @user.api.key = nil
+      @user.api.save
       redirect_to user_path
       flash[:success] = 'Api key was removed'
     end
