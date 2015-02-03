@@ -16,7 +16,7 @@
             <%=  link_to "Create key!", edit_user_api_path(@user, @user.api) , class: "btn btn-lg btn-primary" %>
         <% else %>
           <h4>  <%=   'Your Api key: ' +  @user.api.key %> </h4>
-            <%=  link_to "Delete key!", edit_user_api_path(@user, @user.id) , class: "btn btn-lg btn-primary" %>
+            <%=  link_to "Delete key!", edit_user_api_path(@user, @user.id) , class: "btn btn-lg btn-danger" %>
         <% end %>
       </li>
     </ul>
