@@ -1,9 +1,8 @@
 class ApisController < ApplicationController
+  before_action :validate_login, only: [:edit]
+
   def edit
     @user = User.find(current_user.id)
-
-    #@api = Api.find(@user.id)
-
     if @user.api.key.nil?
       @user.api.key =  ('a'..'z').to_a.shuffle[0,16].join
       if@user.api.save
