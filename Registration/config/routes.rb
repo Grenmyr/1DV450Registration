@@ -62,6 +62,6 @@ Rails.application.routes.draw do
   post 'login' => 'session#create' # create a new session (login)
   delete 'logout' => 'session#destroy' #delete a session (log out)
   resources :users do
-    resources :apis
+    resources :apis, only: [:edit]
   end
 end

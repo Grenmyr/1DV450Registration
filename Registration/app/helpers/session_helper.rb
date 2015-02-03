@@ -1,5 +1,6 @@
 module SessionHelper
   def log_in(user)
+    flash[:success] = 'Welcome back ' + user.username
     session[:user_id] = user.id
   end
 

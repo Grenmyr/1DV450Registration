@@ -8,13 +8,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+begin
   def new
     @user = User.new
   end
-
-  def edit
-    @user = User.find(params[:id])
-  end
+end
 
   def update
     @user = User.find(params[:id])
@@ -25,13 +23,6 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
-=begin
-  api = Api.create(key: "testkeydnsalkdnjasdsHJDJSJD13215&")
-
-  api.user = user
-
-  api.save
-=end
 
   def create
     @user = User.new(user_params)
