@@ -64,4 +64,5 @@ Rails.application.routes.draw do
   resources :users,only: [:index, :show, :new, :update, :create, :edit, :destroy] do
     resources :apis, only: [:edit]
   end
+  get '*path' => redirect('/')
 end

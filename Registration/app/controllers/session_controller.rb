@@ -5,7 +5,7 @@ class SessionController < ApplicationController
     #emty, new View will be loaded then.
   end
 
-
+  #Logs in user
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])

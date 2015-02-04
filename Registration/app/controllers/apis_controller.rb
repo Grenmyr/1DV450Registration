@@ -1,6 +1,7 @@
 class ApisController < ApplicationController
   before_action :validate_login, only: [:edit]
 
+  # User to set api key to nil or new random value.
   def edit
     @user = User.find(current_user.id)
     if @user.api.key.nil?

@@ -14,6 +14,7 @@ begin
   end
 end
 
+  #Update acount info
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
@@ -24,6 +25,7 @@ end
     end
   end
 
+  # Create acount
   def create
     @user = User.new(user_params)
     api = Api.new( key: ('a'..'z').to_a.shuffle[0,16].join)
@@ -40,10 +42,12 @@ end
     end
   end
 
+  #Admins can list user with it
   def index
     @users = User.paginate(page: params[:page], :per_page => 10)
   end
 
+  #Admins can destroy users.
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"

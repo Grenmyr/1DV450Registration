@@ -9,4 +9,15 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  # Method to redirect to root if parameter can not be found.
+  around_filter :catch_not_found
+
+  private
+
+  def catch_not_found
+    yield
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_url, :flash => {:danger => "Parameter not found." }
+  end
 end
