@@ -1,24 +1,37 @@
-<% provide(:title, 'Din Api sida') %>
-<%= gravatar_for @user %>
-<h2>Information for <%= @user.username %></h2>
+<% provide(:title, 'Api key View') %>
+<div class="center jumbotron " >
+  <%= gravatar_for @user %>
+  <h2>Information for <%= @user.username %></h2>
+  <% if current_user.admin?  %>
+      <h4>Welcome Admin you have administrative rights to view and delete users</h4>
+      <% if !@user.admin? %>
+          <%= link_to "delete", @user, method: :delete, class:  "btn btn-lg btn-danger" ,
+                      data: { confirm: "Delete " + @user.username + "?" } %>
+      <% end %>
+      <%=  link_to "List all Users", users_path , class: "btn btn-lg btn-primary" %>
+  <% else %>
+      <h4>Welcome <%= @user.username %> delete or create your api key here</h4>
+  <% end %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <ul>
-      <li>
-        <h4> <%= 'Username: ' + @user.username %></h4>
-      </li>
-      <li>
-        <h4><%= 'Email: ' + @user.email %></h4>
-      </li>
-      <li>
-        <% if @user.api.key.nil? %>
-            <%=  link_to "Create key!", edit_user_api_path(@user, @user.api) , class: "btn btn-lg btn-primary" %>
-        <% else %>
-          <h4>  <%=   'Your Api key: ' +  @user.api.key %> </h4>
-            <%=  link_to "Delete key!", edit_user_api_path(@user, @user.id) , class: "btn btn-lg btn-danger" %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <ul>
+        <li>
+          <h4> <%= 'Username: ' + @user.username %></h4>
+        </li>
+        <li>
+          <h4><%= 'Email: ' + @user.email %></h4>
+        </li>
+        <% if !current_user.admin? %>
+            <% if @user.api.key.nil? %>
+                <li>   <%=  link_to "Create key!", edit_user_api_path(@user, @user.api) , class: "btn btn-lg btn-primary" %>  </li>
+            <% else %>
+                <li><h4>  <%=   'Your Api key: ' +  @user.api.key %> </h4></li>
+                <li> <%=  link_to "Delete key!", edit_user_api_path(@user, @user.id) , class: "btn btn-lg btn-danger" %>  </li>
+            <% end %>
         <% end %>
-      </li>
-    </ul>
+
+      </ul>
+    </div>
   </div>
 </div>

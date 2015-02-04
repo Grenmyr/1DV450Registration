@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def admin?
+
+  end
+
   # Method to redirect to root if parameter can not be found.
   around_filter :catch_not_found
 

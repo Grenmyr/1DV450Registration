@@ -64,5 +64,6 @@ Rails.application.routes.draw do
   resources :users,only: [:index, :show, :new, :update, :create, :edit, :destroy] do
     resources :apis, only: [:edit]
   end
+  # This redirect to root if route can not be found.
   get '*path' => redirect('/')
 end

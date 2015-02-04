@@ -25,7 +25,7 @@ end
     end
   end
 
-  # Create acount
+  # Create account
   def create
     @user = User.new(user_params)
     api = Api.new( key: ('a'..'z').to_a.shuffle[0,16].join)
@@ -62,10 +62,10 @@ end
                                  :password_confirmation)
   end
 
-  # Confirms the correct user.
+  # Confirms the correct user or Admin.
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_url) unless current_user?(@user) or  current_user.admin?
   end
 
   # Confirms an admin user.
