@@ -3,7 +3,7 @@
 
 ## Installationsguide
 
-###  1: Forka eller ladda ner repo som zip.
+###  1: Forka repo.
 ###  2: Öppna applikation med ide eller via konsol navigera till repo katalog.
 ###  3: Skriv i konsol: "cd Registration/" för hamna i applikationsrot.
 ###  4: Skriv i konsol: "bundle install"
