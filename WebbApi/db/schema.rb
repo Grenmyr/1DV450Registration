@@ -11,11 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210141501) do
+ActiveRecord::Schema.define(version: 20150210153359) do
+
+  create_table "creators", force: :cascade do |t|
+    t.integer  "events_id"
+    t.integer  "submits"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "creators", ["events_id"], name: "index_creators_on_events_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.string   "address"
+    t.boolean  "edible"
+    t.string   "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -23,6 +34,15 @@ ActiveRecord::Schema.define(version: 20150210141501) do
   create_table "positions", force: :cascade do |t|
     t.string   "lat"
     t.string   "long"
+    t.integer  "events_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "positions", ["events_id"], name: "index_positions_on_events_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "tag_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
