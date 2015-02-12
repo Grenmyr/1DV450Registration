@@ -17,7 +17,16 @@
   )
   event.save
 
-  Creator.create!(name:  name, submits: number , events_id: event.id)
+  Creator.create(name:  name, submits: number , events_id: event.id)
+  lat = Faker::Address.latitude
+  long = Faker::Address.longitude
+  Position.create(lat: lat, long: long)
 
+end
+2.times do |m|
+  number = m+1*2
+  tag_name = Faker::Internet.domain_word
+  tag =Tag.create(tag_name: tag_name)
+  EventsTag.create(event_id: number, tag_id: tag.id)
 end
 

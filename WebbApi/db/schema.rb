@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210153359) do
+ActiveRecord::Schema.define(version: 20150212120539) do
 
   create_table "creators", force: :cascade do |t|
     t.integer  "events_id"
@@ -26,10 +26,18 @@ ActiveRecord::Schema.define(version: 20150210153359) do
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.boolean  "edible"
-    t.string   "amount"
+    t.integer  "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "events_tags", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "tag_id"
+  end
+
+  add_index "events_tags", ["event_id"], name: "index_events_tags_on_event_id"
+  add_index "events_tags", ["tag_id"], name: "index_events_tags_on_tag_id"
 
   create_table "positions", force: :cascade do |t|
     t.string   "lat"
