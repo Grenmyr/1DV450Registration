@@ -42,12 +42,12 @@ ActiveRecord::Schema.define(version: 20150212120539) do
   create_table "positions", force: :cascade do |t|
     t.string   "lat"
     t.string   "long"
-    t.integer  "events_id"
+    t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "positions", ["events_id"], name: "index_positions_on_events_id"
+  add_index "positions", ["event_id"], name: "index_positions_on_event_id"
 
   create_table "tags", force: :cascade do |t|
     t.string   "tag_name"
