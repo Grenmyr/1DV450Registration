@@ -7,13 +7,16 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Faker to populate database
+mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edible: true, amount: 5},
+             {name:'Flugsvamp', edible: false, amount: 2},{name:'flugsopp', edible: false, amount: 1},
+             {name:'Trattkantarell', edible: true, amount: 5}]
 5.times do |n|
   name  = Faker::Name.name
   number = n
   event =Event.create(
-      name: 'Kantarell',
-      edible: true,
-      amount: number
+      name: mushrooms[n][:name],
+      edible: mushrooms[n][:edible],
+      amount: mushrooms[n][:amount]
   )
   event.save
 
