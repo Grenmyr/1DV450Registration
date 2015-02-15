@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :validate_login, only: [:show]
+  before_action :validate_login, only: [:show,:index]
   before_action :correct_user,   only: [:show,:edit,:update]
   before_action :admin_user,     only: [:destroy,:index]
 
