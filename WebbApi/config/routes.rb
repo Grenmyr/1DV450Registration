@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-
+  #post 'post_event' => 'event#post'
   resources :event, :defaults => { :format => 'json' } do
     resources :position
     resources :tag
     resources :creator
   end
+
+
 
 
 

@@ -20,7 +20,7 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
   )
   event.save
 
-  Creator.create(name:  name, submits: number , events_id: event.id)
+  Creator.create(name:  name, submits: number , event_id: event.id)
   lat = Faker::Address.latitude
   long = Faker::Address.longitude
   Position.create(lat: lat, long: long, event_id: 5-n)

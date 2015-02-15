@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(version: 20150212120539) do
 
   create_table "creators", force: :cascade do |t|
-    t.integer  "events_id"
+    t.integer  "event_id"
     t.integer  "submits"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "creators", ["events_id"], name: "index_creators_on_events_id"
+  add_index "creators", ["event_id"], name: "index_creators_on_event_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
