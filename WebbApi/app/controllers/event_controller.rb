@@ -28,7 +28,8 @@ class EventController < ApplicationController
       # Todo here i need to ask my register app if this creator exist that is using the url key.
       creator =Creator.new(event_id: @event.id, name: 'Bosse', submits: 8888)
       creator.save
-      redirect_to event_path(@event)
+      @event.creator = creator
+      selected_format({event: @event, positions: @event.positions, tags: @event.tags, createdBy: @event.creator},:created)
     else
       render 'new'
   end
