@@ -10,19 +10,25 @@ Rails.application.routes.draw do
     resources :apis, only: [:edit]
   end
   # This redirect to root if route can not be found.
-  get '*path' => redirect('/')
+  #get '*path' => redirect('/')
 
 
   #ROUTES FOR API
-
-  namespace :api , :defaults => { :format => 'json' } do
-    namespace :v1 do
-      resources :event do
-        resources :position
-        resources :type
-        resources :creator
+=begin
+  scope :api do
+    scope :v1 do
+  resources :event, :defaults => { :format => 'json' } do
+    resources :position
+    resources :tag
+    resources :creator
+  end
+  end
+  end
+=end
+  scope :api do
+    scope :v1 do
+      resources :event , :defaults => { :format => 'json' } do
       end
     end
   end
-
 end

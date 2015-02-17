@@ -21,4 +21,18 @@ class ApisController < ApplicationController
     end
   end
 
+  #CODE FOR API
+
+  def selected_format (search,optional)
+    respond_to do |format|
+      format.json { render json: search, status: optional }
+      format.xml { render xml: search }
+    end
+  end
+
+  def error_message
+    {developerMessage: :"Could not find resource: #{params[:id]}",
+     userMessage: :"Could not find any #{params[:id]}"}
+  end
+
 end
