@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201164908) do
+ActiveRecord::Schema.define(version: 20150217120658) do
 
   create_table "apis", force: :cascade do |t|
     t.string   "key"
@@ -21,6 +21,48 @@ ActiveRecord::Schema.define(version: 20150201164908) do
   end
 
   add_index "apis", ["user_id"], name: "index_apis_on_user_id"
+
+  create_table "creators", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "submits"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "creators", ["event_id"], name: "index_creators_on_event_id"
+
+  create_table "event_types", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "type_id"
+  end
+
+  add_index "event_types", ["event_id"], name: "index_event_types_on_event_id"
+  add_index "event_types", ["type_id"], name: "index_event_types_on_type_id"
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "edible"
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string   "lat"
+    t.string   "long"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "positions", ["event_id"], name: "index_positions_on_event_id"
+
+  create_table "types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
