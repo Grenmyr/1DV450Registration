@@ -1,4 +1,4 @@
-class EventController < ApisController
+class Api::V1::EventController < ApisController
   #List all events
   def index
     all_events = Event.all
@@ -21,8 +21,14 @@ class EventController < ApisController
 
   # User when someone Post to API
   def create
+    #@event = Event.new(name: params[:event][:name])
+    @event = Event.new(name: post_params[:name],edible:post_params[:edible],amount:post_params[:amount])
+    if @event.save
+      selected_format({event: @event},:created)
+    end
+    #redirect_to api_v1_event_path(@event)
+=begin
     @event = Event.new(event_params) # using strong parameters
-    #creator = Creator.new
     if @event.save
       # Todo here i need to ask my register app if this creator exist that is using the url key.
       creator =Creator.new(event_id: @event.id, name: 'Bosse', submits: 8888)
@@ -32,6 +38,7 @@ class EventController < ApisController
     else
       render 'new'
     end
+=end
   end
 
   private
@@ -40,4 +47,10 @@ class EventController < ApisController
     #Remember add requirement of creator ID .require(:creator)
     params.permit(:name, :edible, :amount)
   end
+
+  def post_params
+    #Remember add requirement of creator ID .require(:creator)
+    params.require(:event).permit(:name,:edible,:amount)
+    #selected_format({error:'Could not save Data'}, :not_acceptable)
+    end
 end

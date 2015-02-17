@@ -25,10 +25,12 @@ Rails.application.routes.draw do
   end
   end
 =end
-  scope :api do
-    scope :v1 do
-      resources :event , :defaults => { :format => 'json' } do
+    namespace :api do
+      namespace :v1 , :defaults => { :format => 'json' } do
+      resources :event
+      resources :position
+      resources :type
+      resources :creator
       end
     end
-  end
 end

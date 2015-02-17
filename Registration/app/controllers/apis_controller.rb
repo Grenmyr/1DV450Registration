@@ -23,6 +23,8 @@ class ApisController < ApplicationController
 
   #CODE FOR API
 
+  protect_from_forgery with: :null_session
+
   def selected_format (search,optional)
     respond_to do |format|
       format.json { render json: search, status: optional }
