@@ -18,6 +18,8 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
       edible: mushrooms[n][:edible],
       amount: mushrooms[n][:amount]
   )
+  tag = Tag.create(tag_name: 'Svampar')
+  event.tags << tag
   event.save
 
   Creator.create(name:  name, submits: number , event_id: event.id)
@@ -28,8 +30,11 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
 end
 2.times do |m|
   number = m+1*2
+  event = Event.find(number)
   tag_name = Faker::Internet.domain_word
-  tag =Tag.create(tag_name: tag_name)
-  EventsTag.create(event_id: number, tag_id: tag.id)
+  tag =Tag.new(tag_name: tag_name)
+  tag.events << event
+  tag.save
+  #EventsTag.create(event_id: number, tag_id: tag.id)
 end
 
