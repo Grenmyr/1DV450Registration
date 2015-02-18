@@ -1,16 +1,16 @@
-class Api::V1::PositionController < ApisController
+class Api::V1::TypesController < ApisController
   def index
-    all = Position.all
+    all = Type.all
     selected_format(all, :ok)
   rescue ActiveRecord::RecordNotFound
-    @error = error_message
+    @error = get_error_message
     selected_format(@error, :not_found)
   end
   def show
-    position = Position.find(params[:id])
-    selected_format(position, :ok)
+    type = Type.find(params[:id])
+    selected_format(type, :ok)
   rescue ActiveRecord::RecordNotFound
-    @error = error_message
+    @error = get_error_message
     selected_format(@error, :not_found)
   end
 end

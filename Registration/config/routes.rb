@@ -27,10 +27,10 @@ Rails.application.routes.draw do
 =end
     namespace :api do
       namespace :v1 , :defaults => { :format => 'json' } do
-      resources :event
-      resources :position
-      resources :type
-      resources :creator
+      resources :events
+      resources :positions
+      resources :types
+      resources :creators
       end
     end
 end

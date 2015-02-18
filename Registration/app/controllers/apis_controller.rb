@@ -32,9 +32,14 @@ class ApisController < ApplicationController
     end
   end
 
-  def error_message
+  def get_error_message
     {developerMessage: :"Could not find resource: #{params[:id]}",
      userMessage: :"Could not find any #{params[:id]}"}
+  end
+
+  def create_error_message
+    {developerMessage: :'',
+     userMessage: :'Error when saving.'}
   end
 
 end

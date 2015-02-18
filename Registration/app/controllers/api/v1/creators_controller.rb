@@ -1,4 +1,4 @@
-class Api::V1::CreatorController < ApisController
+class Api::V1::CreatorsController < ApisController
   def index
     all = Creator.all
     selected_format(all, :ok)
