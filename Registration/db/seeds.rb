@@ -26,6 +26,7 @@ api2.user = user2
 
 api2.save
 
+=begin
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
@@ -35,6 +36,7 @@ api2.save
                password:              password,
                password_confirmation: password)
 end
+=end
 
 # SEEDS FOR API APP
 mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edible: true, amount: 5},
@@ -52,14 +54,15 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
   event.types << type
   event.save
 
-  Creator.create(name:  name, submits: number , event_id: event.id)
+  Creator.create(name:  name, submits: number , events_id: n)
   lat = Faker::Address.latitude
   long = Faker::Address.longitude
-  Position.create(lat: lat, long: long, event_id: 5-n)
+  Position.create(lat: lat, long: long, events_id: 5-n)
 
 end
+
 2.times do |m|
-  number = m+1*2
+  number = m+1
   event = Event.find(number)
   name = Faker::Internet.domain_word
   type =Type.new(name: name)
@@ -67,3 +70,4 @@ end
   type.save
   #EventsTag.create(event_id: number, tag_id: tag.id)
 end
+

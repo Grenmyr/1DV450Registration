@@ -5,7 +5,11 @@ class Event < ActiveRecord::Base
   has_many :positions
   has_one :creator
 
-  validates :name, presence: true,  length: { in: 3..100 }
-  validates :amount, presence: true
-  validates :edible, presence: true
+  #validates :name, presence: true,  length: { in: 3..100 }
+  #validates :amount, presence: true
+  #validates :edible, presence: true
+
+  def all_by_date
+   #Todo implement code to return in order by date.
+  end
 end
