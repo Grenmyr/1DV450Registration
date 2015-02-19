@@ -28,7 +28,7 @@ class ApisController < ApplicationController
   def selected_format (search,optional)
     respond_to do |format|
       format.json { render json: search, status: optional }
-      format.xml { render xml: search }
+      format.xml { render xml: search, status: optional }
     end
   end
 
@@ -41,7 +41,4 @@ class ApisController < ApplicationController
     {developerMessage: :'',
      userMessage: :'Error when saving.'}
   end
-
-
-
 end

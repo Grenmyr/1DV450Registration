@@ -3,8 +3,7 @@ class Api::V1::EventsController < ApisController
   before_action :require_params, only: [:update,:show, :destroy]
 
   def index
-    all_events = Event.all
-    selected_format({allEvents: all_events}, :ok)
+    offset_and_limit_params
   end
   # Show 1 event by ID
   def show
@@ -62,6 +61,24 @@ class Api::V1::EventsController < ApisController
 
   def require_params
     @event = Event.find(params[:id])
+  end
+
+  def offset_and_limit_params
+    if params[:offset].present? and params[:limit].present?
+      if params[:order].present? and params[:order] === 'date'
+        events = Event.all.limit(params[:limit]).offset(params[:offset]).order('created_at DESC')
+      else
+        events = Event.all.offset(params[:offset]).limit(params[:limit])
+      end
+      selected_format({event: events},:created)
+    else
+      if params[:order].present? and params[:order] === 'date'
+        events = Event.all.order('created_at DESC')
+      else
+        events = Event.all
+      end
+      selected_format({event: events},:created)
+    end
   end
 
 end

@@ -61,10 +61,10 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
 
 end
 
-100.times do
-  lat = Faker::Address.latitude
-  long = Faker::Address.longitude
-  Position.create(lat: lat, lng: long, event_id: 5)
+20.times do
+  lat = 50 + rand(15)
+  long = 10 + rand(15)
+  Position.create(lat: lat, lng: long, event_id: 1 + rand(5))
 end
 
 2.times do |m|
