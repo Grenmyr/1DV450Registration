@@ -12,12 +12,12 @@ class Event < ActiveRecord::Base
 
   def serializable_hash (options={})
     options = {
-        only: [:name, :edible,:amount],
+        only: [:name, :edible,:amount, :created_at, :updated_at],
         methods: [:self_link]
     }.update(options)
     json = super(options)
     #HATEOAS
-    json['url'] = Rails.application.routes.url_helpers.api_v1_creator_path(self)
+    json['url'] = Rails.application.routes.url_helpers.api_v1_event_path(self)
     return json
   end
 
