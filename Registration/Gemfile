@@ -22,6 +22,8 @@ gem 'bootstrap-will_paginate', '0.0.10'
 
 #Gems for api
 gem 'responders'
+gem 'geocoder'
+
 
 
 # Use jquery as the JavaScript library

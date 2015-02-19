@@ -23,14 +23,14 @@ ActiveRecord::Schema.define(version: 20150217120658) do
   add_index "apis", ["user_id"], name: "index_apis_on_user_id"
 
   create_table "creators", force: :cascade do |t|
-    t.integer  "events_id"
+    t.integer  "event_id"
     t.integer  "submits"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "creators", ["events_id"], name: "index_creators_on_events_id"
+  add_index "creators", ["event_id"], name: "index_creators_on_event_id"
 
   create_table "event_types", force: :cascade do |t|
     t.integer "event_id"
@@ -50,13 +50,13 @@ ActiveRecord::Schema.define(version: 20150217120658) do
 
   create_table "positions", force: :cascade do |t|
     t.string   "lat"
-    t.string   "long"
-    t.integer  "events_id"
+    t.string   "lng"
+    t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "positions", ["events_id"], name: "index_positions_on_events_id"
+  add_index "positions", ["event_id"], name: "index_positions_on_event_id"
 
   create_table "types", force: :cascade do |t|
     t.string   "name"

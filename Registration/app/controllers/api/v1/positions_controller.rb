@@ -13,4 +13,9 @@ class Api::V1::PositionsController < ApisController
     @error = get_error_message
     selected_format(@error, :not_found)
   end
+
+  def geocoder
+    render json: Position.near("Gothenburg", 1000)
+
+  end
 end
