@@ -28,7 +28,7 @@ end
   # Create account
   def create
     @user = User.new(user_params)
-    api = Api.new( key: ('a'..'z').to_a.shuffle[0,16].join)
+    api = SecureRandom.hex
     @user.api = api
     #@user.api = api
     if @user.save

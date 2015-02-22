@@ -22,4 +22,6 @@ module SessionHelper
     user == current_user
   end
 
+
+
 end

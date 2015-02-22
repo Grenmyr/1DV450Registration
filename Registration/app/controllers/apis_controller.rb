@@ -5,7 +5,7 @@ class ApisController < ApplicationController
   def edit
     @user = User.find(current_user.id)
     if @user.api.key.nil?
-      @user.api.key =  ('a'..'z').to_a.shuffle[0,16].join
+      @user.api.key = SecureRandom.hex
       if@user.api.save
         redirect_to @user
         flash[:success] = 'New api key' +@user.api.key + ' was created'
@@ -40,5 +40,15 @@ class ApisController < ApplicationController
   def create_error_message
     {developerMessage: :'',
      userMessage: :'Error when saving.'}
+  end
+
+  # Code for WEB-API to handle tokens for clients logging in.
+  def api_auth
+    user = User.find_by(email: params[:email].downcase)
+    if user && user.authenticate(params[:password])
+      render json: { auth_token: encodeJWT(user) }
+    else
+      render json: { error: 'Invalid username or password' }, status: :unauthorized
+    end
   end
 end
