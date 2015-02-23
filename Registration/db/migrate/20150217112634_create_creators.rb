@@ -4,6 +4,7 @@ class CreateCreators < ActiveRecord::Migration
       t.belongs_to :event, index: true
       t.integer :submits
       t.string :name
+      t.string :password_digest
       t.timestamps null: false
     end
   end

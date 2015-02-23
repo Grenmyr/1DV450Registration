@@ -1,5 +1,6 @@
 class Creator < ActiveRecord::Base
   belongs_to :event
+  has_secure_password
 
   def serializable_hash (options={})
     options = {

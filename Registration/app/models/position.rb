@@ -9,7 +9,7 @@ class Position < ActiveRecord::Base
 
   def serializable_hash (options={})
     options = {
-        only: [:lat, :lng],
+        only: [:lat, :lng, :event_id],
         methods: [:self_link]
     }.update(options)
     json = super(options)

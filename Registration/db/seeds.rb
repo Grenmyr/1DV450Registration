@@ -54,7 +54,16 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
   event.types << type
   event.save
 
-  Creator.create(name:  name, submits: number , event_id: n)
+  david =Creator.create(
+      name: 'david Grenmyr',
+      submits: 8,
+      event_id: 2,
+      password: 'hemligt',
+      password_confirmation: 'hemligt',
+  )
+
+  Creator.create(name:  name, submits: number ,
+                 event_id: n,password: 'password',password_confirmation: 'password',)
   lat = Faker::Address.latitude
   long = Faker::Address.longitude
   Position.create(lat: lat, lng: long, event_id: 5-n)

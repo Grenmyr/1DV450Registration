@@ -1,7 +1,7 @@
 class Api::V1::TypesController < ApisController
   def index
     all = Type.all
-    selected_format(all, :ok)
+    offset_and_limit_params(all)
   rescue ActiveRecord::RecordNotFound
     @error = get_error_message
     selected_format(@error, :not_found)
