@@ -11,7 +11,8 @@ class Api::V1::EventsController < ApisController
   end
   # Show 1 event by ID
   def show
-    selected_format({event: @event, positions: @event.positions, types: @event.types, createdBy: @event.creator} , :ok)
+    creator = Creator.find(@event.creators_id)
+    selected_format({event: @event, positions: @event.positions, types: @event.types, createdBy: creator} , :ok)
     #selected_format({events: @event,types: @event.types, positions: @event.positions} , :ok)
       # TODO: Add 1 in application controller instead?
   rescue ActiveRecord::RecordNotFound
@@ -27,6 +28,7 @@ class Api::V1::EventsController < ApisController
   # User when someone Post to API
   def create
     @event = Event.new(name: event_params[:name],edible:event_params[:edible],amount:event_params[:amount])
+    @event.creators_id = @creators_id
     if @event.save
       selected_format({event: @event},:created)
     else

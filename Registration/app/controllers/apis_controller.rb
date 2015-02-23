@@ -64,7 +64,9 @@ class ApisController < ApplicationController
     if request.headers['JWT'].present?
       auth_header = request.headers['JWT'].split(' ').last
       @token_payload = decodeJWT auth_header.strip
-      if !@token_payload
+      if @token_payload
+        @creators_id = @token_payload[0]['creators_id']
+      else
         render json: { error: 'The provided token wasn´t correct' }, status: :bad_request
       end
     else

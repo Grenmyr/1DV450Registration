@@ -6,7 +6,7 @@ user =User.create(
     password_confirmation: 'hemligt',
 )
 
-api = Api.create(key: "testkeydnsalkdnjasdsHJDJSJD13215&")
+api = Api.create(key: "123")
 
 api.user = user
 
@@ -48,7 +48,8 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
   event =Event.create(
       name: mushrooms[n][:name],
       edible: mushrooms[n][:edible],
-      amount: mushrooms[n][:amount]
+      amount: mushrooms[n][:amount],
+      creators_id: n
   )
   type = Type.create(name: 'Bläcksvamp')
   event.types << type
@@ -57,13 +58,12 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
   david =Creator.create(
       name: 'david Grenmyr',
       submits: 8,
-      event_id: 2,
       password: 'hemligt',
       password_confirmation: 'hemligt',
   )
 
   Creator.create(name:  name, submits: number ,
-                 event_id: n,password: 'password',password_confirmation: 'password',)
+                 password: 'password',password_confirmation: 'password',)
   lat = Faker::Address.latitude
   long = Faker::Address.longitude
   Position.create(lat: lat, lng: long, event_id: 5-n)

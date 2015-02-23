@@ -1,10 +1,12 @@
 class Creator < ActiveRecord::Base
-  belongs_to :event
+  has_many :event
   has_secure_password
+  validates :password_digest, presence:true
+  validates :username, presence: true
 
   def serializable_hash (options={})
     options = {
-        only: [:name, :submits],
+        only: [:id, :name, :submits],
         methods: [:self_link]
     }.update(options)
     json = super(options)

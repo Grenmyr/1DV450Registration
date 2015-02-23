@@ -2,7 +2,7 @@ module ApisHelper
   # This method is for encoding the JWT before sending it out
   def encodeJWT(creator, exp=2.hours.from_now)
 # add the expire to the payload, as an integer
-    payload = { creator_id: creator.id }
+    payload = { creators_id: creator.id }
     payload[:exp] = exp.to_i
 # Encode the payload whit the application secret, and a more advanced hash method (creates header with JWT gem)
     JWT.encode( payload, Rails.application.secrets.secret_key_base, "HS512")
@@ -13,7 +13,7 @@ module ApisHelper
     payload = JWT.decode(token, Rails.application.secrets.secret_key_base, "HS512")
 # puts payload
     if payload[0]['exp'] >= Time.now.to_i
-      payload[0]['creator_id']
+        payload
     else
       puts 'time fucked up'
       false
