@@ -1,4 +1,5 @@
 class Api::V1::PositionsController < ApisController
+  before_action :developer_key_authentication
   def index
     all = Position.all
     offset_and_limit_params(all)

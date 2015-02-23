@@ -1,6 +1,7 @@
 class ApisController < ApplicationController
   include ApisHelper
   before_action :validate_login, only: [:edit]
+  before_action :developer_key_authentication
 
 
   # User to set api key to nil or new random value.

@@ -1,7 +1,6 @@
 class Api::V1::EventsController < ApisController
   #List all events
   before_action :require_params, only: [:update,:show, :destroy]
-
   before_action :developer_key_authentication
   before_action :client_key_authentication, only: [:create,:update,:destroy]
 
