@@ -28,6 +28,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'responders'
 gem 'geocoder'
 gem 'jwt'
+gem 'rack-cors', :require => 'rack/cors'
 
 
 
