@@ -1,7 +1,7 @@
 class Api::V1::CreatorsController < ApisController
   def index
     all = Creator.all
-    offset_and_limit_params(all)
+    offset_and_limit_and_order_params(all)
   end
   def show
     creator = Creator.find(params[:id])

@@ -89,7 +89,7 @@ class ApisController < ApplicationController
 
 
   # FOR LIMIT AND OFFSET
-  def offset_and_limit_params(model_all)
+  def offset_and_limit_and_order_params(model_all)
     if params[:offset].present? and params[:limit].present?
       if params[:order].present? and params[:order] === 'date'
         data =model_all.limit(params[:limit]).offset(params[:offset]).order('created_at DESC')

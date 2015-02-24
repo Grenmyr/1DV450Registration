@@ -6,7 +6,7 @@ class Api::V1::EventsController < ApisController
 
   def index
     all = Event.all
-    offset_and_limit_params(all)
+    offset_and_limit_and_order_params(all)
   end
   # Show 1 event by ID
   def show
@@ -23,6 +23,7 @@ class Api::V1::EventsController < ApisController
   def create
     @event = Event.new(name: event_params[:name],edible:event_params[:edible],amount:event_params[:amount])
     @event.creator_id = @creators_id
+    @event.types = Type.find(params[:event][:type_ids])
     if @event.save
       selected_format({event: @event},:created)
     else
@@ -61,13 +62,12 @@ class Api::V1::EventsController < ApisController
       selected_format({events: @creator.events} , :ok)
     end
   end
-
   private
 
   def event_params
     #Remember add requirement of creator ID .require(:creator)
     params.require(:event).permit(:name,:edible,:amount,:id,:position)
-    #TODO Add creator
+    #TODO Add tags
   end
 
   def require_params
