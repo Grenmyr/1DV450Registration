@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217120658) do
+ActiveRecord::Schema.define(version: 20150224121042) do
 
   create_table "apis", force: :cascade do |t|
     t.string   "key"
@@ -39,15 +39,13 @@ ActiveRecord::Schema.define(version: 20150217120658) do
   add_index "event_types", ["type_id"], name: "index_event_types_on_type_id"
 
   create_table "events", force: :cascade do |t|
-    t.integer  "creators_id"
     t.string   "name"
     t.boolean  "edible"
     t.integer  "amount"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "creator_id"
   end
-
-  add_index "events", ["creators_id"], name: "index_events_on_creators_id"
 
   create_table "positions", force: :cascade do |t|
     t.string   "lat"

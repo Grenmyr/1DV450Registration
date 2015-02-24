@@ -49,7 +49,7 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
       name: mushrooms[n][:name],
       edible: mushrooms[n][:edible],
       amount: mushrooms[n][:amount],
-      creators_id: n
+      creator_id: n
   )
   type = Type.create(name: 'Bläcksvamp')
   event.types << type

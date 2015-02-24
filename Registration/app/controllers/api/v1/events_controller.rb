@@ -22,7 +22,7 @@ class Api::V1::EventsController < ApisController
   # User when someone Post to API
   def create
     @event = Event.new(name: event_params[:name],edible:event_params[:edible],amount:event_params[:amount])
-    @event.creators_id = @creators_id
+    @event.creator_id = @creators_id
     if @event.save
       selected_format({event: @event},:created)
     else
@@ -51,14 +51,14 @@ class Api::V1::EventsController < ApisController
   def find_by_type
     require_type_params
     if @type
-    selected_format({event: @type.events} , :ok)
+    selected_format({events: @type.events} , :ok)
       end
   end
 
   def find_by_creator
     require_creator_params
     if @creator
-      selected_format({event: @creator.events} , :ok)
+      selected_format({events: @creator.events} , :ok)
     end
   end
 
