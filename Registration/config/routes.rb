@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       resources :types
       get '/types/:id/events' => 'events#find_by_type'
       resources :creators
-
+      get '/creators/:id/events' => 'events#find_by_creator'
       end
     end
 end

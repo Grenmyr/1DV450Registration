@@ -49,10 +49,17 @@ class Api::V1::EventsController < ApisController
   end
 
   def find_by_type
-    type_id = Type.find(params[:id])
-    #@events = Event.all.where(:event_types => @type.id)
-    #@event = Event.all där type är @event.id
-    selected_format({event: type_id.events} , :ok)
+    require_type_params
+    if @type
+    selected_format({event: @type.events} , :ok)
+      end
+  end
+
+  def find_by_creator
+    require_creator_params
+    if @creator
+      selected_format({event: @creator.events} , :ok)
+    end
   end
 
   private
@@ -60,6 +67,7 @@ class Api::V1::EventsController < ApisController
   def event_params
     #Remember add requirement of creator ID .require(:creator)
     params.require(:event).permit(:name,:edible,:amount,:id,:position)
+    #TODO Add creator
   end
 
   def require_params
@@ -69,4 +77,19 @@ class Api::V1::EventsController < ApisController
     @error = get_error_message
     selected_format(@error, :not_found)
   end
+
+  def require_type_params
+    @type = Type.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    @error = get_error_message
+    selected_format(@error, :not_found)
+  end
+
+  def require_creator_params
+    @creator = Creator.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    @error = get_error_message
+    selected_format(@error, :not_found)
+  end
+
 end
