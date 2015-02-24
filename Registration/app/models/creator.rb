@@ -2,7 +2,7 @@ class Creator < ActiveRecord::Base
   has_many :event
   has_secure_password
   validates :password_digest, presence:true
-  validates :username, presence: true
+  validates :name, presence: true
 
   def serializable_hash (options={})
     options = {

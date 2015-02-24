@@ -12,11 +12,6 @@ class Api::V1::EventsController < ApisController
   def show
     creator = Creator.find(@event.creators_id)
     selected_format({event: @event, positions: @event.positions, types: @event.types, createdBy: creator} , :ok)
-    #selected_format({events: @event,types: @event.types, positions: @event.positions} , :ok)
-      # TODO: Add 1 in application controller instead?
-  rescue ActiveRecord::RecordNotFound
-    @error = get_error_message
-    selected_format(@error, :not_found)
   end
 
   # Route to create new Event, keep?
@@ -53,8 +48,11 @@ class Api::V1::EventsController < ApisController
     end
   end
 
-  def close
-
+  def find_by_type
+    type_id = Type.find(params[:id])
+    #@events = Event.all.where(:event_types => @type.id)
+    #@event = Event.all där type är @event.id
+    selected_format({event: type_id.events} , :ok)
   end
 
   private
@@ -66,8 +64,9 @@ class Api::V1::EventsController < ApisController
 
   def require_params
     @event = Event.find(params[:id])
+
+  rescue ActiveRecord::RecordNotFound
+    @error = get_error_message
+    selected_format(@error, :not_found)
   end
-
-
-
 end
