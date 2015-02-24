@@ -24,8 +24,7 @@ class Api::V1::EventsController < ApisController
     @event = Event.new(name: event_params[:name],edible:event_params[:edible],amount:event_params[:amount])
     @event.creator_id = @creators_id
 
-    return selected_format(error = create_error_types,:ok) unless params[:event].has_key? :type_ids
-
+    return selected_format(error = create_error_types,:bad_request) unless params[:event].has_key? :type_ids
     @event.types = Type.find(params[:event][:type_ids])
 
     if @event.save
@@ -69,9 +68,7 @@ class Api::V1::EventsController < ApisController
   private
 
   def event_params
-    #Remember add requirement of creator ID .require(:creator)
     params.require(:event).permit(:name,:edible,:amount,:id,:position)
-    #TODO Add tags
   end
 
   def require_params

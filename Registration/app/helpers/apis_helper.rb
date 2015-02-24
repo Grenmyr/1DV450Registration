@@ -23,4 +23,20 @@ module ApisHelper
     puts error
     nil
   end
+
+  def create_error_types
+    {developerMessage: :'Need to include type_ids as array to your event object.EX: event:{event_ids:[1,2]}',
+     userMessage: :'You need to add what type of saving it is'}
+  end
+
+  def create_error_message
+    {developerMessage: :'',
+     userMessage: :'Error when saving.'}
+  end
+
+  def get_error_message
+    {developerMessage: :"Could not find resource: #{params[:id]}",
+     userMessage: :"Could not find any #{params[:id]}"}
+  end
+
 end

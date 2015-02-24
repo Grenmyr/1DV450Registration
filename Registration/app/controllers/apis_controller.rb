@@ -35,20 +35,11 @@ class ApisController < ApplicationController
     end
   end
 
-  def get_error_message
-    {developerMessage: :"Could not find resource: #{params[:id]}",
-     userMessage: :"Could not find any #{params[:id]}"}
-  end
 
-  def create_error_message
-    {developerMessage: :'',
-     userMessage: :'Error when saving.'}
-  end
 
-  def create_error_types
-    {developerMessage: :'',
-     userMessage: :'You need to add type_ids:[] to your event object.'}
-  end
+
+
+
 
   def check_api_key
     key = Api.find_by(key: params[:apiKey])
