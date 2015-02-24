@@ -45,6 +45,11 @@ class ApisController < ApplicationController
      userMessage: :'Error when saving.'}
   end
 
+  def create_error_types
+    {developerMessage: :'',
+     userMessage: :'You need to add type_ids:[] to your event object.'}
+  end
+
   def check_api_key
     key = Api.find_by(key: params[:apiKey])
     if key.nil?

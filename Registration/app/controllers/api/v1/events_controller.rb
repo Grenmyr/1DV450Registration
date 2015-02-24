@@ -23,7 +23,11 @@ class Api::V1::EventsController < ApisController
   def create
     @event = Event.new(name: event_params[:name],edible:event_params[:edible],amount:event_params[:amount])
     @event.creator_id = @creators_id
+
+    return selected_format(error = create_error_types,:ok) unless params[:event].has_key? :type_ids
+
     @event.types = Type.find(params[:event][:type_ids])
+
     if @event.save
       selected_format({event: @event},:created)
     else
