@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get '/types/:id/events' => 'events#find_by_type'
       resources :creators
       get '/creators/:id/events' => 'events#find_by_creator'
+      #get '/creators/delete' => 'creators#delete'
       end
     end
 end

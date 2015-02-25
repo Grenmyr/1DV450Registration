@@ -67,7 +67,7 @@ class ApisController < ApplicationController
         render json: { error: 'The provided token wasn´t correct' }, status: :bad_request
       end
     else
-      render json: { error: 'Need to include the Authorization header' }, status: :forbidden # The header isn´t present
+      render json: { error: 'Need to include the Authorization header JWT with correct key' }, status: :forbidden # The header isn´t present
     end
   end
 

@@ -3,7 +3,8 @@ class Position < ActiveRecord::Base
                #       :address => :location
   #after_validation :reverse_geocode
 
-
+  validates :lat, presence: true
+  validates :lng, presence: true
 
   belongs_to :event
 

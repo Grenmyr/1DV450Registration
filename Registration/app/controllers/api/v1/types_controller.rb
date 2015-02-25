@@ -14,6 +14,4 @@ class Api::V1::TypesController < ApisController
     selected_format(@error, :not_found)
   end
 
-
-
 end

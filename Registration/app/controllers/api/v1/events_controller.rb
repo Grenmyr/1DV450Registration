@@ -27,18 +27,29 @@ class Api::V1::EventsController < ApisController
     return selected_format(error = create_error_types,:bad_request) unless params[:event].has_key? :type_ids
     @event.types = Type.find(params[:event][:type_ids])
 
+    position = Position.new(lat: positions_params[:lat], lng: positions_params[:lng], event_id: @event.id)
     if @event.save
-      selected_format({event: @event},:created)
+      if position.save
+      selected_format({event: @event, position: position},:created)
+      else
+        error = create_error_message
+        error[:developerMessage] = position.errors
+        selected_format(error, :bad_request)
+      end
     else
-      error = create_error_message
-      error[:developerMessage] = @event.errors
-      selected_format(error, :bad_request)
+        error = create_error_message
+        error[:developerMessage] = @event.errors
+        selected_format(error, :bad_request)
     end
   end
 
   def update
       if @event.update(name: event_params[:name],edible:event_params[:edible],amount:event_params[:amount])
         selected_format({events: @event},:created)
+      else
+        error = create_error_message
+        error[:developerMessage] = @event.errors
+        selected_format(error, :bad_request)
       end
   end
 
@@ -68,7 +79,11 @@ class Api::V1::EventsController < ApisController
   private
 
   def event_params
-    params.require(:event).permit(:name,:edible,:amount,:id,:position)
+    params.require(:event).permit(:name,:edible,:amount)
+  end
+
+  def positions_params
+    params.require(:position).permit(:lat,:lng)
   end
 
   def require_params
