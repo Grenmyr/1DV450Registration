@@ -1,5 +1,4 @@
 class Api::V1::TypesController < ApisController
-  before_action :developer_key_authentication
   def index
     all = Type.all
     offset_and_limit_and_order_params(all)

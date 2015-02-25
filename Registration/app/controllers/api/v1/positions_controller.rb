@@ -1,11 +1,7 @@
 class Api::V1::PositionsController < ApisController
-  before_action :developer_key_authentication
   def index
     all = Position.all
     offset_and_limit_and_order_params(all)
-  rescue ActiveRecord::RecordNotFound
-    @error = get_error_message
-    selected_format(@error, :not_found)
   end
   def show
     position = Position.find(params[:id])

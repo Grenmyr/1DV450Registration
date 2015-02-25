@@ -1,5 +1,4 @@
 class Api::V1::CreatorsController < ApisController
-  before_action :developer_key_authentication
   before_action :client_key_authentication, only: [:update,:destroy]
   before_action :get_true_creator, only: [:update,:destroy]
   before_action :define_creator_params, only: [:update]
@@ -35,7 +34,6 @@ class Api::V1::CreatorsController < ApisController
 
   def get_params
     @creator =Creator.find(params[:id])
-
   rescue ActiveRecord::RecordNotFound
     @error = get_error_message
     selected_format(@error, :not_found)
