@@ -92,14 +92,15 @@ class ApisController < ApplicationController
       else
         data =model_all.offset(params[:offset]).limit(params[:limit])
       end
-      selected_format({event: data},:created)
+      selected_format({data: data},:created)
     else
       if params[:order].present? and params[:order] === 'date'
         data =model_all.order('created_at DESC')
       else
         data = model_all
       end
-      selected_format({event: data},:ok)
+      "Could not find any #{params[:id]}"
+      selected_format({data: data},:ok)
     end
     end
 end

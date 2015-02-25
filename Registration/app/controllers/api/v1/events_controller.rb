@@ -10,8 +10,7 @@ class Api::V1::EventsController < ApisController
   end
   # Show 1 event by ID
   def show
-    creator = Creator.find(@event.creators_id)
-    selected_format({event: @event, positions: @event.positions, types: @event.types, createdBy: creator} , :ok)
+    selected_format({event: @event, positions: @event.positions, types: @event.types, createdBy: @event.creator} , :ok)
   end
 
   # Route to create new Event, keep?
