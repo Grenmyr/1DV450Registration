@@ -15,7 +15,7 @@ module ApisHelper
     if payload[0]['exp'] >= Time.now.to_i
         payload
     else
-      puts 'time fucked up'
+      puts 'time expired on login'
       false
     end
 # catch the error if token is wrong

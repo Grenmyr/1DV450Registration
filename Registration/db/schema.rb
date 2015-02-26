@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20150224121042) do
   end
 
   create_table "positions", force: :cascade do |t|
-    t.string   "lat"
-    t.string   "lng"
+    t.float    "lat"
+    t.float    "lng"
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

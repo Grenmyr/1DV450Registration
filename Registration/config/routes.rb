@@ -18,13 +18,12 @@ Rails.application.routes.draw do
     namespace :api do
       namespace :v1 , :defaults => { :format => 'json' } do
       resources :events
-      resources :positions
       get '/positions/geocoder' => 'positions#geocoder'
+      resources :positions
       resources :types
       get '/types/:id/events' => 'events#find_by_type'
       resources :creators
       get '/creators/:id/events' => 'events#find_by_creator'
-      #get '/creators/delete' => 'creators#delete'
       end
     end
 end

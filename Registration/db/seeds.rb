@@ -51,7 +51,7 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
       amount: mushrooms[n][:amount],
       creator_id: n
   )
-  type = Type.create(name: 'Bläcksvamp')
+  type = Type.create(name: 'Svamp')
   event.types << type
   event.save
 
@@ -64,16 +64,17 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
 
   Creator.create(name:  name, submits: number ,
                  password: 'password',password_confirmation: 'password',)
-  lat = Faker::Address.latitude
-  long = Faker::Address.longitude
-  Position.create(lat: lat, lng: long, event_id: 5-n)
+   lat = Faker::Address.latitude
+   lng = Faker::Address.longitude
+   Position.create(lat: lat, lng: lng, event_id: 5-n)
 
 end
 
 20.times do
   lat = 50 + rand(15)
-  long = 10 + rand(15)
-  Position.create(lat: lat, lng: long, event_id: 1 + rand(5))
+  lng = 10 + rand(15)
+  pos = Position.new(lat: lat, lng: lng, event_id: 1 + rand(5))
+  pos.save
 end
 
 2.times do |m|
