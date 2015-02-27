@@ -26,15 +26,15 @@ Password : Password
 
 I seed filen har api med id 1 (som används för Autorization token) fått sin key: hårkodad till 123. Detta för snabbare testning, I systemet annars så slumpas det med SecureRandom.hex
 
-Api
-id:1
-key: 123
+Api   
+id:1   
+key: 123   
 
 I seed filen har Creator med id 1 david Grenmyr blivit hårdkodad ihop med password hemligt för göra testning enkare.
 
-Creator 
-name: david Grenmyr 
-Password: hemligt
+Creator   
+name: david Grenmyr   
+Password: hemligt  
 
 Kör Öppna dessa urler i postman för lägga in mina tester, kör dom föreslagsvis i denna ordning, men fritt att ändra.:
 Registrering: https://www.getpostman.com/collections/78f6543184a34e27cf31
