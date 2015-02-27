@@ -26,13 +26,13 @@ Password : Password
 
 I seed filen har api med id 1 (som används för Autorization token) fått sin key: hårkodad till 123. Detta för snabbare testning, I systemet annars så slumpas det med SecureRandom.hex
 
-########Api   
+######Api   
 id:1   
 key: 123   
 
 I seed filen har Creator med id 1 david Grenmyr blivit hårdkodad ihop med password hemligt för göra testning enkare.
 
-########Creator   
+######Creator   
 name: david Grenmyr   
 Password: hemligt  
 
