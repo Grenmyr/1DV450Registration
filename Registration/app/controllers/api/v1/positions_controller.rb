@@ -12,12 +12,10 @@ class Api::V1::PositionsController < ApisController
   end
 
   def geocoder
-
     if params[:range].present? and params[:location].present?
       selected_format({position:  Position.near(params[:location], params[:range])}, :ok)
     else
       selected_format({position: Position.near("Sverige", 5000)}, :ok)
     end
-
   end
 end
