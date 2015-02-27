@@ -75,7 +75,7 @@ class ApisController < ApplicationController
   end
 
   def api_register
-    creator = Creator.new(name: request.headers['name'],password: request.headers['password'],password_confirmation: request.headers['password'])
+    creator = Creator.new(submits: 0, name: request.headers['name'],password: request.headers['password'],password_confirmation: request.headers['password'])
     if creator.save
       selected_format(encodeJWT(creator),:ok)
     else
