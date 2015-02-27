@@ -36,7 +36,7 @@ I seed filen har Creator med id 1 david Grenmyr blivit hårdkodad ihop med passw
 name: david Grenmyr   
 Password: hemligt  
 
-Men dessa filer är såklart redan förifyllda för mina postman tester. Så bara tuta o köra, men om ni vill testa med egen ny creator, så regga bara en med Postman Registrering collection och fyll i med dess uppgifter istället. 
+Men dessa filer är såklart redan förifyllda för mina postman tester. Så bara tuta o köra, men om ni vill testa med egen ny creator, så regga bara en med Postman Registrering: och fyll i med vilka uppgifter du vill ha uppgifter istället. 
 
 Öppna dessa urler i postman för lägga in mina tester, kör dom föreslagsvis i denna ordning, men fritt att välja själv.
 Glöm bara inte att ersätta JWT key med den ni fått från inloggningen i alla postman tester som kräver klient validering.  
