@@ -35,12 +35,6 @@ class ApisController < ApplicationController
     end
   end
 
-
-
-
-
-
-
   def check_api_key
     key = Api.find_by(key: params[:apiKey])
     if key.nil?
@@ -50,7 +44,6 @@ class ApisController < ApplicationController
 
 
   ####### API auth stuff with JWT
-  # This is a callback which actiosn will call if protected
   def developer_key_authentication
     authenticate_or_request_with_http_token do |token|
         Api.exists?(key: token)
@@ -64,10 +57,10 @@ class ApisController < ApplicationController
       if @token_payload
         @creators_id = @token_payload[0]['creators_id']
       else
-        render json: { error: 'The provided token wasn´t correct' }, status: :bad_request
+        selected_format({ error: 'The provided token wasn´t correct' },:bad_request)
       end
     else
-      render json: { error: 'Need to include the Authorization header JWT with correct key' }, status: :forbidden # The header isn´t present
+      selected_format({ error: 'Need to include the Authorization header JWT with correct key' },:forbidden)
     end
   end
 
@@ -76,9 +69,19 @@ class ApisController < ApplicationController
     creator = Creator.find_by(name: request.headers['name'])
     if creator && creator.authenticate(request.headers['password'])
       selected_format(encodeJWT(creator),:ok)
-      #encodeJWT(creator)
     else
       selected_format({ error: 'Invalid username or password' },:unauthorized)
+    end
+  end
+
+  def api_register
+    creator = Creator.new(name: request.headers['name'],password: request.headers['password'],password_confirmation: request.headers['password'])
+    if creator.save
+      selected_format(encodeJWT(creator),:ok)
+    else
+      error = create_error_message
+      error[:developerMessage] = creator.errors
+      selected_format(error, :bad_request)
     end
   end
 

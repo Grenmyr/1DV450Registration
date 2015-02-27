@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :apis, only: [:edit]
   end
   get '/api/login' => 'apis#api_login', :defaults => { :format => 'json' }
+  get '/api/register' => 'apis#api_register', :defaults => { :format => 'json' }
   # This redirect to root if route can not be found.
   #get '*path' => redirect('/')
 

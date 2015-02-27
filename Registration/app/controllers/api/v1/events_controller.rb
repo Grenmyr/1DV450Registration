@@ -19,16 +19,22 @@ class Api::V1::EventsController < ApisController
 
   # User when someone Post to API
   def create
-    @event = Event.new(name: event_params[:name],edible:event_params[:edible],amount:event_params[:amount])
+    @event = Event.new(strong_event_params)
     @event.creator_id = @creators_id
 
     return selected_format(error = create_error_types,:bad_request) unless params[:event].has_key? :type_ids
     @event.types = Type.find(params[:event][:type_ids])
 
-    position = Position.new(lat: positions_params[:lat], lng: positions_params[:lng], event_id: @event.id)
+    position = Position.new(strong_positions_params)
     if @event.save
+      position.event_id = @event.id
+
       if position.save
       selected_format({event: @event, position: position},:created)
+
+      creator = Creator.find(@creators_id)
+      creator.submits += 1
+      creator.save
       else
         error = create_error_message
         error[:developerMessage] = position.errors
@@ -42,7 +48,7 @@ class Api::V1::EventsController < ApisController
   end
 
   def update
-      if @event.update(name: event_params[:name],edible:event_params[:edible],amount:event_params[:amount])
+      if @event.update(strong_event_params)
         selected_format({events: @event},:created)
       else
         error = create_error_message
@@ -76,34 +82,32 @@ class Api::V1::EventsController < ApisController
   end
   private
 
-  def event_params
+  def strong_event_params
     params.require(:event).permit(:name,:edible,:amount)
   end
 
-  def positions_params
+  def strong_positions_params
     params.require(:position).permit(:lat,:lng)
   end
 
+
+  #DO Repeat yourself
   def require_params
     @event = Event.find(params[:id])
-
   rescue ActiveRecord::RecordNotFound
-    @error = get_error_message
-    selected_format(@error, :not_found)
+    selected_format(get_error_message, :not_found)
   end
 
   def require_type_params
     @type = Type.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    @error = get_error_message
-    selected_format(@error, :not_found)
+    selected_format(get_error_message, :not_found)
   end
 
   def require_creator_params
     @creator = Creator.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    @error = get_error_message
-    selected_format(@error, :not_found)
+    selected_format(get_error_message, :not_found)
   end
 
 end

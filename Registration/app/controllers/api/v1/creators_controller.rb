@@ -1,7 +1,7 @@
 class Api::V1::CreatorsController < ApisController
   before_action :client_key_authentication, only: [:update,:destroy]
   before_action :get_true_creator, only: [:update,:destroy]
-  before_action :define_creator_params, only: [:update]
+  before_action :strong_creator_params, only: [:update]
 
   def index
     all = Creator.all
@@ -15,7 +15,7 @@ class Api::V1::CreatorsController < ApisController
   end
 
   def update
-    if @creator.update(name: define_creator_params[:name])
+    if @creator.update(name: strong_creator_params[:name])
       selected_format({creator: @creator},:created)
     else
       create_update_error
@@ -47,7 +47,7 @@ class Api::V1::CreatorsController < ApisController
   end
 
 
-  def define_creator_params
+  def strong_creator_params
     params.require(:creator).permit(:name,:submits)
   end
 
