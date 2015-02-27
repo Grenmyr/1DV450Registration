@@ -39,7 +39,7 @@ Password: hemligt
 Men dessa filer är såklart redan förifyllda för mina postman tester. Så bara tuta o köra, men om ni vill testa med egen ny creator, så regga bara en med Postman Registrering collection och fyll i med dess uppgifter istället. 
 
 Öppna dessa urler i postman för lägga in mina tester, kör dom föreslagsvis i denna ordning, men fritt att välja själv.
-Glöm bara inte att ersätta JWT key med den ni fått från inloggningen i alla postman tester som kräver client validering.  
+Glöm bara inte att ersätta JWT key med den ni fått från inloggningen i alla postman tester som kräver klient validering.  
 Registrering: https://www.getpostman.com/collections/78f6543184a34e27cf31  
 Login: https://www.getpostman.com/collections/9635d04c0b2f1a29c285  
 Types: https://www.getpostman.com/collections/3e588e733b6ed09b8f7f  
