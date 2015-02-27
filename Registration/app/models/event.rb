@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   has_many :positions
   belongs_to :creator
 
-  validates :name, presence: true,  length: { in: 3..100 }
+  validates :name, presence: true,  length: { in: 3..100 }, uniqueness: true
   validates :amount, presence: true
   validates :edible, presence: true
 
@@ -20,7 +20,6 @@ class Event < ActiveRecord::Base
     json['url'] = Rails.application.routes.url_helpers.api_v1_event_path(self)
     return json
   end
-
 
   def all_by_date
    #Todo implement code to return in order by date.
