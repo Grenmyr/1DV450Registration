@@ -1,4 +1,5 @@
 class Api::V1::TypesController < ApisController
+  #List all Types in the order and offset/limit client params want.
   def index
     all = Type.all
     offset_and_limit_and_order_params(all)

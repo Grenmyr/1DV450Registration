@@ -70,9 +70,9 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
 
 end
 
-20.times do
-  lat = 50 + rand(15)
-  lng = 10 + rand(15)
+100.times do
+  lat = 52 + rand(5)
+  lng = 13 + rand(5)
   pos = Position.new(lat: lat, lng: lng, event_id: 1 + rand(5))
   pos.save
 end

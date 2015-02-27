@@ -3,6 +3,7 @@ class Api::V1::CreatorsController < ApisController
   before_action :get_true_creator, only: [:update,:destroy]
   before_action :strong_creator_params, only: [:update]
 
+  #List all Creators and Present them with params if user submitted them.
   def index
     all = Creator.all
     offset_and_limit_and_order_params(all)
@@ -14,6 +15,7 @@ class Api::V1::CreatorsController < ApisController
     end
   end
 
+  # Update Creator using get_true_creator @creator with strong params.
   def update
     if @creator.update(name: strong_creator_params[:name])
       selected_format({creator: @creator},:created)
@@ -22,6 +24,7 @@ class Api::V1::CreatorsController < ApisController
     end
   end
 
+  # Destroy Creator using get_true_creator @creator
   def destroy
     if@creator.delete
       selected_format({creator: @creator},:no_content)
@@ -32,13 +35,14 @@ class Api::V1::CreatorsController < ApisController
 
   private
 
+  #DO Repeat yourself
   def get_params
     @creator =Creator.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     @error = get_error_message
     selected_format(@error, :not_found)
   end
-
+  #DO Repeat yourself
   def get_true_creator
     @creator = Creator.find(@creators_id)
   rescue ActiveRecord::RecordNotFound
@@ -50,7 +54,7 @@ class Api::V1::CreatorsController < ApisController
   def strong_creator_params
     params.require(:creator).permit(:name,:submits)
   end
-
+  
   def create_update_error
     error = create_error_message
     error[:developerMessage] = @creator.errors

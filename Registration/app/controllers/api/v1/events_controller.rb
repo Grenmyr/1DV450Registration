@@ -3,28 +3,33 @@ class Api::V1::EventsController < ApisController
   before_action :require_params, only: [:update,:show, :destroy]
   before_action :client_key_authentication, only: [:create,:update,:destroy]
 
+  #List all Events and Present them with params if user submitted them.
   def index
     all = Event.all
     offset_and_limit_and_order_params(all)
   end
-  # Show 1 event by ID
+  # Show event and the positions,types and creator who belong to it.
   def show
     selected_format({event: @event, positions: @event.positions, types: @event.types, createdBy: @event.creator} , :ok)
   end
 
-  # Route to create new Event, keep?
+=begin
   def new
     @event = Event.new
   end
+=end
 
-  # User when someone Post to API
+  # Complicated I want Event only to save if certain conditions, se below.
   def create
     @event = Event.new(strong_event_params)
+    #Make sure it is only the creator logged in with JWT that get registered.
     @event.creator_id = @creators_id
 
+    #Make sure the creator added what type the event belong to, if not return with error.
     return selected_format(error = create_error_types,:bad_request) unless params[:event].has_key? :type_ids
     @event.types = Type.find(params[:event][:type_ids])
 
+    #I want position to event, otherwise its useless data.
     position = Position.new(strong_positions_params)
     if @event.save
       position.event_id = @event.id
@@ -32,6 +37,7 @@ class Api::V1::EventsController < ApisController
       if position.save
       selected_format({event: @event, position: position},:created)
 
+      #Increasing that creators submit count with 1
       creator = Creator.find(@creators_id)
       creator.submits += 1
       creator.save
@@ -74,6 +80,7 @@ class Api::V1::EventsController < ApisController
       end
   end
 
+  # Route used to list events by creator ID
   def find_by_creator
     require_creator_params
     if @creator

@@ -28,6 +28,7 @@ class ApisController < ApplicationController
 
   protect_from_forgery with: :null_session
 
+  #Function used from creators,events,positions,types controllers to present Json or XML format along with status Code
   def selected_format (search,optional)
     respond_to do |format|
       format.json { render json: search, status: optional }
@@ -35,21 +36,25 @@ class ApisController < ApplicationController
     end
   end
 
+=begin
+  #Check if api key exist in params
   def check_api_key
     key = Api.find_by(key: params[:apiKey])
     if key.nil?
       selected_format({apiKey: 'Not valid key'},:bad_request)
     end
   end
+=end
 
 
-  ####### API auth stuff with JWT
+  ####### Check for developer token exist
   def developer_key_authentication
     authenticate_or_request_with_http_token do |token|
         Api.exists?(key: token)
     end
   end
 
+  # Check Jason web token is present and correct.
   def client_key_authentication
     if request.headers['JWT'].present?
       auth_header = request.headers['JWT'].split(' ').last
@@ -64,7 +69,7 @@ class ApisController < ApplicationController
     end
   end
 
-
+  # Route used to log in on client account.
   def api_login
     creator = Creator.find_by(name: request.headers['name'])
     if creator && creator.authenticate(request.headers['password'])
@@ -74,6 +79,7 @@ class ApisController < ApplicationController
     end
   end
 
+  # Route used to register new api client account.
   def api_register
     creator = Creator.new(submits: 0, name: request.headers['name'],password: request.headers['password'],password_confirmation: request.headers['password'])
     if creator.save
