@@ -13,12 +13,6 @@ class Api::V1::EventsController < ApisController
     selected_format({event: @event, positions: @event.positions, types: @event.types, createdBy: @event.creator} , :ok)
   end
 
-=begin
-  def new
-    @event = Event.new
-  end
-=end
-
   # Complicated I want Event only to save if certain conditions, se below.
   def create
     @event = Event.new(strong_event_params)

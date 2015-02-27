@@ -36,17 +36,6 @@ class ApisController < ApplicationController
     end
   end
 
-=begin
-  #Check if api key exist in params
-  def check_api_key
-    key = Api.find_by(key: params[:apiKey])
-    if key.nil?
-      selected_format({apiKey: 'Not valid key'},:bad_request)
-    end
-  end
-=end
-
-
   ####### Check for developer token exist
   def developer_key_authentication
     authenticate_or_request_with_http_token do |token|
