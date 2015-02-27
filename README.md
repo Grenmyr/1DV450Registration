@@ -9,7 +9,7 @@
 ###  4: Skriv i konsol: "bundle install"
 ###  5: Skriv i konsol:Rake "db:setup"
 ###  6: Skriv i konsol: "rails s" 
-### För Registreringsappen Läs 7: För API gå till 8:
+### För Registreringsapp (labb 1) gå till 7: För API(labb 2) gå till 8:
 ###  7: Öppna webbläsare och navigera till "http://localhost:3000/"
 
 Det finns 2 användare som kan användas och loggas in på. 
