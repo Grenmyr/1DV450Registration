@@ -11,7 +11,7 @@
 ###  6: Skriv i konsol: "rails s" 
 ### För Registreringsapp (labb 1) gå till 7: För API(labb 2) gå till 8:
 ###  7: Öppna webbläsare och navigera till "http://localhost:3000/"
-
+#### Release1.00
 Det finns 2 användare som kan användas och loggas in på. 
 dg222cs@student.lnu.se är vanlig användare och har användarrättigheter.
 admin@admin.com är admin och kan även ta bort andra användare.
@@ -23,7 +23,7 @@ email: admin@admin.com
 Password : Password
 
 ###  8:
-
+#### Registration.Api  
 I seed filen har api med id 1 (som används för Autorization token) fått sin key: hårkodad till 123. Detta för snabbare testning, I systemet annars så slumpas det med SecureRandom.hex
 
 ######Api   
