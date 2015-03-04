@@ -3,7 +3,7 @@
 
 ## Installationsguide
 
-###  1: Forka repo.
+###  1: För Testa labb 1 hämta [Labb 1] (https://github.com/Grenmyr/1DV450Registration/releases/tag/Release1.01) för testa labb2 [Labb 2] (https://github.com/Grenmyr/1DV450Registration/releases/tag/Registration.API1.01)  
 ###  2: Öppna applikation med ide eller via konsol navigera till repo katalog.
 ###  3: Skriv i konsol: "cd Registration/" för hamna i applikationsrot.
 ###  4: Skriv i konsol: "bundle install"
