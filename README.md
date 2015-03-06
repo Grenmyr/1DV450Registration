@@ -44,7 +44,7 @@ Registrering: https://www.getpostman.com/collections/78f6543184a34e27cf31
 Login: https://www.getpostman.com/collections/9635d04c0b2f1a29c285  
 Types: https://www.getpostman.com/collections/3e588e733b6ed09b8f7f    
 Events: https://www.getpostman.com/collections/1bbefe1609d772a8ee1c   
-Positions: https://www.getpostman.com/collections/70bdac23ad1b17cf7124    
+Positions: https://www.getpostman.com/collections/b7fba9968371edb69602    
 Creator: https://www.getpostman.com/collections/f90a65d6799cdfa418f8    
 
 
