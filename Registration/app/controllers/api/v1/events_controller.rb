@@ -5,7 +5,13 @@ class Api::V1::EventsController < ApisController
 
   #List all Events and Present them with params if user submitted them.
   def index
-    all = Event.all
+    if params[:query].present?
+      query = '%'+params[:query]+'%'
+      all = Event.all.where('name LIKE ?',query)
+    else
+      all = Event.all
+    end
+
     offset_and_limit_and_order_params(all)
   end
   # Show event and the positions,types and creator who belong to it.
@@ -84,7 +90,7 @@ class Api::V1::EventsController < ApisController
   private
 
   def strong_event_params
-    params.require(:event).permit(:name,:edible,:taste)
+    params.require(:event).permit(:name,:edible,:taste,:query)
   end
 
   def strong_positions_params
