@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150224121042) do
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.boolean  "edible"
-    t.integer  "amount"
+    t.integer  "taste"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "creator_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150224121042) do
   create_table "positions", force: :cascade do |t|
     t.float    "lat"
     t.float    "lng"
+    t.integer  "amount"
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

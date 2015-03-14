@@ -3,6 +3,7 @@ class CreatePositions < ActiveRecord::Migration
     create_table :positions do |t|
       t.float :lat
       t.float :lng
+      t.integer :amount
       t.belongs_to :event, index: true
       t.timestamps null: false
     end

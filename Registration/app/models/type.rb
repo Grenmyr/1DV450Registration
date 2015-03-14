@@ -4,7 +4,7 @@ class Type < ActiveRecord::Base
 
   def serializable_hash (options={})
     options = {
-        only: [:name],
+        only: [:name,:id],
         methods: [:self_link]
     }.update(options)
     json = super(options)

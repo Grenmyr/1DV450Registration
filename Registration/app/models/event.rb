@@ -6,13 +6,13 @@ class Event < ActiveRecord::Base
   belongs_to :creator
 
   validates :name, presence: true,  length: { in: 3..100 }, uniqueness: true
-  validates :amount, presence: true
+  validates :taste, presence: true
   validates :edible, presence: true
 
 
   def serializable_hash (options={})
     options = {
-        only: [:name, :edible,:amount, :creators_id,  :created_at, :updated_at],
+        only: [:id,:name, :edible,:taste, :creators_id,  :created_at, :updated_at],
         methods: [:self_link]
     }.update(options)
     json = super(options)

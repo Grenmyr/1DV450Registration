@@ -4,7 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.belongs_to :creators, index: true
       t.string :name
       t.boolean :edible
-      t.integer :amount
+      t.integer :taste
       t.timestamps null: false
     end
   end

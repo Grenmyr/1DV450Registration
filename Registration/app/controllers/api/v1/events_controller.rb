@@ -84,11 +84,11 @@ class Api::V1::EventsController < ApisController
   private
 
   def strong_event_params
-    params.require(:event).permit(:name,:edible,:amount)
+    params.require(:event).permit(:name,:edible,:taste)
   end
 
   def strong_positions_params
-    params.require(:position).permit(:lat,:lng)
+    params.require(:position).permit(:lat,:lng ,:amount)
   end
 
 

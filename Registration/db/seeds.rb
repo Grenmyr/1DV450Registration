@@ -39,19 +39,22 @@ end
 
 
 # SEEDS FOR API APP
-mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edible: true, amount: 5},
-             {name:'Flugsvamp', edible: false, amount: 2},{name:'flugsopp', edible: false, amount: 1},
-             {name:'Trattkantarell', edible: true, amount: 5}]
+mushrooms = [{name:'Kantarell', edible: true, taste: 5},{name:'Carl Johan', edible: true, taste: 5},
+             {name:'Flugsvamp', edible: false, taste: 1},{name:'flugsopp', edible: false, taste: 1},
+             {name:'Trattkantarell', edible: true, taste: 4}]
+types = [{name:'Svamp'},{name:'Bär'},
+         {name:'Rötter'},{name:'Frukt'},
+         {name:'Övrigt'}]
 5.times do |n|
   name  = Faker::Name.name
   number = n
   event =Event.create(
       name: mushrooms[n][:name],
       edible: mushrooms[n][:edible],
-      amount: mushrooms[n][:amount],
+      taste: mushrooms[n][:taste],
       creator_id: n
   )
-  type = Type.create(name: 'Svamp')
+  type = Type.create(name: types[n][:name])
   event.types << type
   event.save
 
@@ -66,24 +69,26 @@ mushrooms = [{name:'Kantarell', edible: true, amount: 4},{name:'Carl Johan', edi
                  password: 'password',password_confirmation: 'password',)
    lat = Faker::Address.latitude
    lng = Faker::Address.longitude
-   Position.create(lat: lat, lng: lng, event_id: 5-n)
+   Position.create(lat: lat, lng: lng, amount:1+rand(5), event_id: 5-n)
 
 end
 
 100.times do
   lat = 52 + rand(5)
   lng = 13 + rand(5)
-  pos = Position.new(lat: lat, lng: lng, event_id: 1 + rand(5))
+  pos = Position.new(lat: lat, lng: lng, amount: 1+rand(5), event_id: 1 + rand(5))
   pos.save
 end
 
+
 2.times do |m|
-  number = m+1
+  number = m+2
   event = Event.find(number)
-  name = Faker::Internet.domain_word
-  type =Type.new(name: name)
+
+  type = Type.find(1)
   type.events << event
   type.save
   #EventsTag.create(event_id: number, tag_id: tag.id)
 end
+
 
