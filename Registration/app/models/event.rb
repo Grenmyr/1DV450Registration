@@ -7,7 +7,6 @@ class Event < ActiveRecord::Base
 
   validates :name, presence: true,  length: { in: 3..100 }, uniqueness: true
   validates :taste, presence: true
-  validates :edible, presence: true
 
 
   def serializable_hash (options={})

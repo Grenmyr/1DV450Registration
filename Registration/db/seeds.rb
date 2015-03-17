@@ -38,13 +38,33 @@ api2.save
 end
 
 
+
 # SEEDS FOR API APP
+
+positions =[[56.52186427798517,15.534125890624978],
+ [57.0514245695495,16.116401281249978],
+[56.455142710571536,15.863715734374978],
+[56.70323643846532,15.929633703124978],
+[56.72132576744785,15.039741124999978],
+[56.35179660926256,14.973823156249978],
+[56.35179660926256,14.973823156249978],
+[56.93772001326552,15.138618078124978],
+[56.78156073069479,16.127387609374978],
+[56.54004070987818,15.929633703124978],
+[56.75747833606965,16.039496984374978]]
+
+
+
 mushrooms = [{name:'Kantarell', edible: true, taste: 5},{name:'Carl Johan', edible: true, taste: 5},
              {name:'Flugsvamp', edible: false, taste: 1},{name:'flugsopp', edible: false, taste: 1},
              {name:'Trattkantarell', edible: true, taste: 4}]
+berries = [{name:'Rönnbär', edible: true, taste: 2},{name:'Vilda körsbär', edible: true, taste: 3},
+             {name:'Dödsbäret', edible: false, taste: 1},{name:'Hallon', edible: true, taste: 5},
+             {name:'Blåbär', edible: true, taste: 4}]
 types = [{name:'Svamp'},{name:'Bär'},
          {name:'Rötter'},{name:'Frukt'},
          {name:'Övrigt'}]
+
 5.times do |n|
   name  = Faker::Name.name
   number = n
@@ -54,9 +74,8 @@ types = [{name:'Svamp'},{name:'Bär'},
       taste: mushrooms[n][:taste],
       creator_id: n
   )
-  type = Type.create(name: types[n][:name])
-  event.types << type
-  event.save
+
+  Type.create(name: types[n][:name])
 
   david =Creator.create(
       name: 'david Grenmyr',
@@ -67,28 +86,51 @@ types = [{name:'Svamp'},{name:'Bär'},
 
   Creator.create(name:  name, submits: number ,
                  password: 'password',password_confirmation: 'password',)
-   lat = Faker::Address.latitude
-   lng = Faker::Address.longitude
-   Position.create(lat: lat, lng: lng, amount:1+rand(5), event_id: 5-n)
+   Position.create(lat: positions[rand(10)][0], lng: positions[rand(10)][1], amount:1+rand(5), event_id: 5-n)
 
 end
 
-100.times do
-  lat = 52 + rand(5)
-  lng = 13 + rand(5)
-  pos = Position.new(lat: lat, lng: lng, amount: 1+rand(5), event_id: 1 + rand(5))
+20.times do
+  lat = 55 + rand(3)
+  lng = 15 + rand(3)
+  pos = Position.new(lat: positions[rand(10)][0], lng: positions[rand(10)][1], amount: 1+rand(5), event_id: 1 + rand(10))
   pos.save
 end
 
 
-2.times do |m|
-  number = m+2
+5.times do |m|
+  number = m+1
   event = Event.find(number)
 
   type = Type.find(1)
   type.events << event
   type.save
-  #EventsTag.create(event_id: number, tag_id: tag.id)
 end
+
+
+
+5.times do |n|
+  event =Event.new(
+      name: berries[n][:name],
+      edible: berries[n][:edible],
+      taste: berries[n][:taste],
+      creator_id: 2
+  )
+  event.save
+end
+
+5.times do |l|
+  number = l+6
+  event = Event.find(number)
+
+  type = Type.find(2)
+  type.events << event
+  type.save
+end
+
+
+
+
+
 
 
