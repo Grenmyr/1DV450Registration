@@ -72,7 +72,7 @@ types = [{name:'Svamp'},{name:'Bär'},
       name: mushrooms[n][:name],
       edible: mushrooms[n][:edible],
       taste: mushrooms[n][:taste],
-      creator_id: n
+      creator_id: 1+rand(3)
   )
 
   Type.create(name: types[n][:name])
@@ -86,14 +86,14 @@ types = [{name:'Svamp'},{name:'Bär'},
 
   Creator.create(name:  name, submits: number ,
                  password: 'password',password_confirmation: 'password',)
-   Position.create(lat: positions[rand(10)][0], lng: positions[rand(10)][1], amount:1+rand(5), event_id: 5-n)
+   Position.create(lat: positions[rand(10)][0], lng: positions[rand(10)][1], amount:1+rand(5), event_id: 5-n, creator_id:1+rand(5))
 
 end
 
 20.times do
   lat = 55 + rand(3)
   lng = 15 + rand(3)
-  pos = Position.new(lat: positions[rand(10)][0], lng: positions[rand(10)][1], amount: 1+rand(5), event_id: 1 + rand(10))
+  pos = Position.new(lat: positions[rand(10)][0], lng: positions[rand(10)][1], amount: 1+rand(5), event_id: 1 + rand(10), creator_id:1+rand(5))
   pos.save
 end
 

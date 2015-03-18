@@ -1,5 +1,6 @@
 class Creator < ActiveRecord::Base
   has_many :events
+  has_many :positions
   has_secure_password
   validates :password_digest, presence:true
   validates :name, presence: true, uniqueness: true

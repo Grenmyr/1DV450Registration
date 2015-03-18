@@ -7,10 +7,12 @@ class Position < ActiveRecord::Base
   validates :lng, presence: true
   validates :amount, presence: true
   belongs_to :event
+  belongs_to :creator
 
   def serializable_hash (options={})
     options = {
         only: [:lat, :lng, :amount, :event_id,:id],
+        include: :creator,
         methods: [:self_link]
     }.update(options)
     json = super(options)

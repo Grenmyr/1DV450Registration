@@ -9,7 +9,7 @@ class Api::V1::EventsController < ApisController
       query = '%'+params[:query]+'%'
       all = Event.all.where('name LIKE ?',query)
     else
-      all = Event.all
+      all = Event.all :include => [ :creators => { :only => [:name,:submits]}]
     end
 
     offset_and_limit_and_order_params(all)
@@ -33,6 +33,7 @@ class Api::V1::EventsController < ApisController
     position = Position.new(strong_positions_params)
     if @event.save
       position.event_id = @event.id
+      position.creator_id = @creators_id
 
       if position.save
       selected_format({event: @event, position: position},:created)
@@ -76,7 +77,7 @@ class Api::V1::EventsController < ApisController
   def find_by_type
     require_type_params
     if @type
-    selected_format({events: @type.events} , :ok)
+    selected_format({events: @type.events } , :ok)
       end
   end
 
@@ -94,7 +95,7 @@ class Api::V1::EventsController < ApisController
   end
 
   def strong_positions_params
-    params.require(:position).permit(:lat,:lng ,:amount)
+    params.require(:position).permit(:lat,:lng ,:amount,:creator_id)
   end
 
 

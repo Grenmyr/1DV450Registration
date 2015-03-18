@@ -1,6 +1,6 @@
 module ApisHelper
   # This method is for encoding the JWT before sending it out
-  def encodeJWT(creator, exp=2.hours.from_now)
+  def encodeJWT(creator, exp=48.hours.from_now)
 # add the expire to the payload, as an integer
     payload = { creators_id: creator.id }
     payload[:exp] = exp.to_i

@@ -1,7 +1,7 @@
 class Api::V1::PositionsController < ApisController
   #List all Positions in the order and offset/limit client params want.
   before_action :require_params, only: [:update,:show,:destroy]
-  before_action :client_key_authentication, only: [:create]
+  before_action :client_key_authentication, only: [:create,:update,:destroy]
   def index
     all = Position.all
     offset_and_limit_and_order_params(all)
@@ -21,9 +21,11 @@ class Api::V1::PositionsController < ApisController
         selected_format({position: position},:created)
 
         #Increasing that creators submit count with 1
+
         creator = Creator.find(@creators_id)
         creator.submits += 1
         creator.save
+
       else
         error = create_error_message
         error[:developerMessage] = position.errors
@@ -60,7 +62,7 @@ class Api::V1::PositionsController < ApisController
     end
   end
   def strong_positions_params
-    params.require(:position).permit(:lat,:lng ,:amount,:event_id)
+    params.require(:position).permit(:lat,:lng ,:amount,:event_id,:creator_id)
   end
 
   def require_params
