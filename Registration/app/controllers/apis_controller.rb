@@ -62,7 +62,8 @@ class ApisController < ApplicationController
   def api_login
     creator = Creator.find_by(name: request.headers['name'])
     if creator && creator.authenticate(request.headers['password'])
-      selected_format(encodeJWT(creator),:ok)
+      encode = encodeJWT(creator)
+      selected_format({jwt: encode,creator_id: creator.id,name: creator.name,submits:creator.submits},:ok)
     else
       selected_format({ error: 'Invalid username or password' },:unauthorized)
     end
@@ -72,7 +73,8 @@ class ApisController < ApplicationController
   def api_register
     creator = Creator.new(submits: 0, name: request.headers['name'],password: request.headers['password'],password_confirmation: request.headers['password'])
     if creator.save
-      selected_format(encodeJWT(creator),:ok)
+      encode = encodeJWT(creator)
+      selected_format({jwt: encode,creator_id: creator.id,name: creator.name,submits:creator.submits},:ok)
     else
       error = create_error_message
       error[:developerMessage] = creator.errors
