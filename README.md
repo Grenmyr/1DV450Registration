@@ -1,6 +1,6 @@
 # 1DV450Registration
 
-##OBS FÖR HITTA ANGULAR app gå till https://github.com/Grenmyr/1DV450Angular  där finns kommentarer av ändringar kring api samt angular o allt sånt. Api finns nu även publiserat så behöver ej köra dessa installationsguider eller clona.
+##OBS FÖR HITTA ANGULAR app gå till https://github.com/Grenmyr/1DV450Angular  där finns kommentarer av ändringar kring api samt angular o allt sånt. Api finns nu även publiserat så installationer för api behövs ej. Gå därför och installera angular appen localt. https://github.com/Grenmyr/1DV450Angular
 
 
 ## Installationsguide
