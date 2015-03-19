@@ -21,14 +21,13 @@ gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 
 #Gems for window supportability
-gem 'tzinfo-data', platforms: [:mingw, :mswin]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 #Gems for api
 gem 'responders'
 gem 'geocoder'
 gem 'jwt'
 gem 'rack-cors', :require => 'rack/cors'
-
 
 
 

@@ -9,7 +9,7 @@ class Api::V1::EventsController < ApisController
       query = '%'+params[:query]+'%'
       all = Event.all.where('name LIKE ?',query)
     else
-      all = Event.all :include => [ :creators => { :only => [:name,:submits]}]
+      all = Event.all
     end
 
     offset_and_limit_and_order_params(all)

@@ -84,7 +84,7 @@ types = [{name:'Svamp'},{name:'Bär'},
       password_confirmation: 'hemligt',
   )
 
-  Creator.create(name:  name, submits: number ,
+  Creator.create(name:  name, submits: number+1 ,
                  password: 'password',password_confirmation: 'password',)
    Position.create(lat: positions[rand(10)][0], lng: positions[rand(10)][1], amount:1+rand(5), event_id: 5-n, creator_id:1+rand(5))
 
