@@ -1,6 +1,6 @@
 # 1DV450Registration
 
-##OBS FÖR HITTA ANGULAR app gå till https://github.com/Grenmyr/1DV450Angular  där finns kommentarer av ändringar kring api samt angular o installationsguide för angular client appen. Rails Api och registreringsapp ligger ute på http://188.166.3.35:3000/ 
+##OBS FÖR HITTA ANGULAR app gå till https://github.com/Grenmyr/1DV450Angular  där finns kommentarer av ändringar kring api samt angular o installationsguide för angular client appen. Rails Api och Registreringsapp ligger ute på http://188.166.3.35:3000/ 
 
 
 ## Installationsguide
