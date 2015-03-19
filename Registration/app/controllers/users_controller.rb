@@ -28,7 +28,9 @@ end
   # Create account
   def create
     @user = User.new(user_params)
-    api = SecureRandom.hex
+    apikey = SecureRandom.hex
+    api = Api.new()
+    api.key = apikey
     @user.api = api
     #@user.api = api
     if @user.save
